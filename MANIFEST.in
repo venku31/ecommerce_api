@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include ecommerce_api *.css
+recursive-include ecommerce_api *.csv
+recursive-include ecommerce_api *.html
+recursive-include ecommerce_api *.ico
+recursive-include ecommerce_api *.js
+recursive-include ecommerce_api *.json
+recursive-include ecommerce_api *.md
+recursive-include ecommerce_api *.png
+recursive-include ecommerce_api *.py
+recursive-include ecommerce_api *.svg
+recursive-include ecommerce_api *.txt
+recursive-exclude ecommerce_api *.pyc
