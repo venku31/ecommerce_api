@@ -24,5 +24,5 @@ from `tabWebsite Item` where website_new_product=1 """ , as_dict=True)
 
 #####new_products##
 @frappe.whitelist()
-def get_home_page_new_products():
+def get_home_page_banners():
     return frappe.db.sql(f""" SELECT parent as Website_item_name,offer_title,offer_subtitle,offer_details,offer_image from `tabWebsite Offer` """ , as_dict=True)
