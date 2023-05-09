@@ -123,7 +123,20 @@ app_license = "MIT"
 #		"ecommerce_api.tasks.monthly"
 #	]
 # }
-
+fixtures = [
+            {"doctype": "Custom Field",
+        	"filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Website Item-website_top_pick",
+					"Website Offer-offer_image",
+					"Website Item-website_new_product",
+			]
+			]
+			]},
+			]
 # Testing
 # -------
 
