@@ -2,8 +2,8 @@
 import frappe
 
 @frappe.whitelist()
-def get_searchslug(item_name=None):
-    if item_name:
-        return frappe.db.sql(f""" SELECT item_name,route from `tabWebsite Item` where item_name = '(item_name)s' """ %{"item_name": item_name}, as_dict=True)
+def get_searchslug(item_group=None):
+    if item_group:
+        return frappe.db.sql(f""" SELECT item_name,route,item_group from `tabWebsite Item` where item_group = '%(item_group)s' """ %{"item_group": item_group}, as_dict=True)
     else :
-        return frappe.db.sql(f""" SELECT item_name,route from `tabWebsite Item` """ , as_dict=True)
+        return frappe.db.sql(f""" SELECT item_name,route,item_group from `tabWebsite Item` """ , as_dict=True)
