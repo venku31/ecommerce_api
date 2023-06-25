@@ -28,11 +28,12 @@ def adding_new_address(data=None):
     #     return addr
     # except Exception as e:
     #     frappe.log_error(title="Error saving Address", message=e)
+    
     try:
         address_name = frappe.get_doc(
-            {
+        {
             "doctype": "Address",
-            "address_title": customer,
+            "address_title": data.get("customer"),
             "address_type": data.get("address_type"),
             "address_line1": data.get("address_line1") or "Address 1",
             "address_line2": data.get("address_line2"),
@@ -42,10 +43,11 @@ def adding_new_address(data=None):
             "country": data.get("country"),
             "phone": data.get("phone"),
             "email_id": data.get("email"),
-            "links": [{"link_doctype": "Customer", "link_name": customer}],
+            "links": [{"link_doctype": "Customer", "link_name": data.get("customer")}],
             }
         ).insert(ignore_permissions=True)
+        return address_name
             # address_name = address_name.name
     except Exception as e:
         frappe.log_error(title="Error saving Address", message=e)
-    return address_name
+    # return address_name

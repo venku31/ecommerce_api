@@ -15,26 +15,24 @@ def create_user(data=None):
         user.mobile_no = data.get("mobile_no")
         user.new_password = data.get("password")
         user.user_type = data.get("user_type")
+        generate_keys(frappe.session.user)
         user.flags.ignore_mandatory = True
         user.save(ignore_permissions=True)
         frappe.db.commit()
+        
         # user2 = frappe.get_doc('User',user.name)
         # api_generate = generate_keys(user2)
         return {"User Successfully Created ":user.name}
     except Exception as e:
         return {"error":e}
-
 @frappe.whitelist( allow_guest=True)
 def generate_keys(user):
     # user = frappe.get_doc('User',frappe.session.user)
     user_details = frappe.get_doc('User', user)
-    api_secret = frappe.generate_hash(length=15)
+    api_key = frappe.generate_hash(length=15)
+    user_details.api_key = api_key
 
-    if not user_details.api_key:
-        api_key = frappe.generate_hash(length=15)
-        user_details.api_key = api_key
 
-    user_details.api_secret = api_secret
-    user_details.save()
+    user_details.save(ignore_permissions=True)
+    frappe.db.commit()
 
-    return api_secret
